@@ -1,27 +1,24 @@
 package view;
 
-import java.awt.event.*;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.*;
 
-import word.RandomWord;
-import word.SpecifiedWord;
-import word.Word;
+import main.Constants;
 
-public class StartPagePanel extends JPanel {
-	private final String[] difficultySettings = {"Easy", "Medium", "Hard"};
-	private String chosenDifficulty;
+/**
+ * Defines the start page panel
+ * @author jonassvalin
+ *
+ */
+public class StartPagePanel extends HangmanPanel {
+	private final String[] difficultySettings = {Constants.EASY, Constants.MEDIUM, Constants.HARD};
 	private JLabel headLine;
 	private JLabel difficultyLabel;
 	private JLabel startLabel;
 	private JLabel dukeImage;
-	private JLabel orLabel;
-	private JLabel specifiedLabel;
 	private JComboBox difficultyChooser;
-	private JTextField specifiedWordField;
-	private JButton startButton;
 	private GridBagConstraints cs;
 
 	protected StartPagePanel() {
@@ -48,59 +45,29 @@ public class StartPagePanel extends JPanel {
 		this.add(difficultyLabel, cs);
 
 		difficultyChooser = new JComboBox(difficultySettings);
-		chosenDifficulty = "Easy";
 		cs.gridx = 1;
 		cs.gridy = 2;
 		cs.gridwidth = 2;
 		this.add(difficultyChooser, cs);
 		
-		orLabel = new JLabel("(or)");
-		cs.gridx = 0;
-		cs.gridy = 3;
-		cs.gridwidth = 3;
-		this.add(orLabel, cs);
-		
-		specifiedLabel = new JLabel("Specify word: ");
-		specifiedLabel.setToolTipText("Leave blank if you want to use a randomly generated word");
-		cs.gridx = 0;
-		cs.gridy = 4;
-		cs.gridwidth = 1;
-		this.add(specifiedLabel, cs);
-
-		specifiedWordField = new JTextField(20);
-		specifiedWordField.setToolTipText("Leave blank if you want to use a randomly generated word");
-		cs.gridx = 1;
-		cs.gridy = 4;
-		cs.gridwidth = 2;
-		this.add(specifiedWordField, cs);
-		
 		startLabel = new JLabel("Start New Game: ");
 		cs.gridx = 0;
-		cs.gridy = 5;
+		cs.gridy = 3;
 		cs.gridwidth = 1;
 		this.add(startLabel, cs);
 
-		startButton = new JButton("Go!");
-		chosenDifficulty = "Easy";
+		button = new JButton("Go!");
 		cs.gridx = 1;
-		cs.gridy = 5;
+		cs.gridy = 3;
 		cs.gridwidth = 2;
-		this.add(startButton, cs);
+		this.add(button, cs);
 	}
 	
-	protected String getSpecifiedWord() {
-		return specifiedWordField.getText().toUpperCase();
-	}
-	
+	/**
+	 * Returns the difficulty setting chosen by the player
+	 */
 	protected String getDifficulty() {
 		return (String) difficultyChooser.getSelectedItem();
-	}
-	
-	protected void addStartButtonListener(ActionListener startButtonListener) {
-		startButton.addActionListener(startButtonListener);
-	}
-	protected void setSpecifiedWordError() {
-		specifiedWordField.setText("(Use only alphabetic characters)");
 	}
 	
 }

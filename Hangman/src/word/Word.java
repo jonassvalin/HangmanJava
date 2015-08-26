@@ -1,55 +1,35 @@
 package word;
 
-import java.util.HashMap;
+/**
+ * Defines necessary functionalities for objects implementing Word
+ * @author jonassvalin
+ *
+ */
+public interface Word {
+	
+	/**
+	 * Returns a string representation of the word
+	 */
+	public String toString();
 
-public abstract class Word {
-	protected String word;
-	protected int length;
-	protected HashMap<Integer, String> characters;
+	/**
+	 * Returns the length of the word
+	 */
+	public int getLength();
 	
-	public String getWord() {
-		return word;
-	}
+	/**
+	 * Returns a string consisting of the found characters and underlines for the hidden ones
+	 */
+	public String getHiddenWordString();
+	
+	/**
+	 * Sets the status of the characters that match the guess to found
+	 */
+	public void setFound(String guess);
+	
+	/**
+	 * Returns true if all characters of the word have been found
+	 */
+	public boolean allCharactersFound();
 
-	public int getLength() {
-		return length;
-	}
-	
-	public boolean allCharactersFound() {
-		for (int i = 0; i < getLength(); i++) {
-			if (characters.get(i).equals("hidden")) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	public String getWordString() {
-		StringBuilder wordString = new StringBuilder();
-		for (int i = 0; i < getLength(); i++) {
-			if (characterStatus(i).equals("hidden")) {
-				wordString.append("_ ");
-			} else {
-				wordString.append(getChar(i) + " ");
-			}
-		}
-		return wordString.toString();
-	}
-	
-	public String characterStatus(int i) {
-		return characters.get(i);
-	}
-	
-	public String getChar(int i) {
-		return Character.toString(word.charAt(i));
-	}
-	
-	public void setFound(String guess) {
-		for (int i = 0; i < getLength(); i++) {
-			if (getChar(i).equals(guess)) {
-				characters.put(i, "found");
-			}
-		}
-	}
-	
 }

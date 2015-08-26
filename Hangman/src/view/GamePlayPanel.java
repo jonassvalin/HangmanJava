@@ -1,19 +1,24 @@
 package view;
 
-import java.awt.event.*;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.*;
 
-public class GamePlayPanel extends JPanel {
+/**
+ * Defines the game play panel
+ * @author jonassvalin
+ *
+ */
+public class GamePlayPanel extends HangmanPanel {
 	private JLabel headLine;
 	private JLabel hangImage;
+	private JLabel wordLine;
+	private JLabel usedLetters;
 	private JTextField guessLetterField;
-	private JButton guessButton;
 	private GridBagConstraints cs;
 
-	protected GamePlayPanel(int amountOfGuesses, String wordString) {
+	protected GamePlayPanel(int amountOfGuesses, String wordString, String usedLettersString) {
 		super(new GridBagLayout());
 		cs = new GridBagConstraints();
 		
@@ -23,7 +28,7 @@ public class GamePlayPanel extends JPanel {
 		cs.gridwidth = 3;
 		this.add(headLine, cs);
 		
-		ImageIcon image = (new ImageIcon(((new ImageIcon("resources/hang" + amountOfGuesses + ".gif")).getImage()).getScaledInstance(250, 250, java.awt.Image.SCALE_SMOOTH)));
+		ImageIcon image = (new ImageIcon(((new ImageIcon("resources/hang" + amountOfGuesses + ".gif")).getImage()).getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
 		hangImage = new JLabel("", image, JLabel.CENTER);
 		cs.gridx = 0;
 		cs.gridy = 1;
@@ -36,25 +41,37 @@ public class GamePlayPanel extends JPanel {
 		cs.gridwidth = 1;
 		this.add(guessLetterField, cs);
 		
-		guessButton = new JButton("Submit Guess");
+		button = new JButton("Submit Guess");
 		cs.gridx = 1;
 		cs.gridy = 2;
 		cs.gridwidth = 1;
-		this.add(guessButton, cs);
+		this.add(button, cs);
 		
-		headLine = new JLabel(wordString);
+		wordLine = new JLabel(wordString);
 		cs.gridx = 0;
 		cs.gridy = 3;
 		cs.gridwidth = 3;
-		this.add(headLine, cs);
+		this.add(wordLine, cs);
+		
+		usedLetters = new JLabel(usedLettersString);
+		cs.gridx = 0;
+		cs.gridy = 4;
+		cs.gridwidth = 3;
+		this.add(usedLetters, cs);
 	}
 	
+	/**
+	 * Returns the guess input by the player
+	 */
 	protected String getGuess() {
 		return guessLetterField.getText().toUpperCase();
 	}
-	
-	protected void addGuessButtonListener(ActionListener guessButtonListener) {
-		guessButton.addActionListener(guessButtonListener);
+
+	/**
+	 * Clears the guess field
+	 */
+	protected void clearGuessField() {
+		guessLetterField.setText("");
 	}
 	
 }
