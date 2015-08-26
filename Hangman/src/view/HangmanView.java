@@ -100,7 +100,7 @@ public class HangmanView extends JFrame{
 	 * Adds an actionlistener for the restart button
 	 */
 	public void addResetButtonListener(ActionListener restartwButtonListener) {
-		restartGamePanel.addRestartButtonListener(restartwButtonListener);
+		restartGamePanel.addButtonListener(restartwButtonListener);
 	}
 	
 }

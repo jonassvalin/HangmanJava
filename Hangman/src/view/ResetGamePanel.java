@@ -47,11 +47,4 @@ public class ResetGamePanel extends HangmanPanel {
 		this.add(button, cs);
 	}
 	
-	/**
-	 * Adds an actionlistener for the start button
-	 */
-	protected void addRestartButtonListener(ActionListener restartButtonListener) {
-		button.addActionListener(restartButtonListener);
-	}
-	
 }
