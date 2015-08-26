@@ -116,8 +116,8 @@ public class RandomWord implements Word {
 			responseNode = response.getBody();
 			jsonWord = responseNode.getObject();
 		} catch (UnirestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("ERROR: Unable to connect to WordsAPI, please try again.");
+			System.exit(0);
 		}
 		String potentialWord = jsonWord.get("word").toString().toUpperCase();
 		String frequency = "";
@@ -126,7 +126,6 @@ public class RandomWord implements Word {
 		} catch (org.json.JSONException e) {
 			return findNewWord(url, difficulty);
 		}
-		System.out.println(potentialWord + " : " + frequency);
 		if (wordAccepted(potentialWord, difficulty, Double.parseDouble(frequency))) return potentialWord;
 		else return findNewWord(url, difficulty);
 	}
