@@ -3,8 +3,11 @@ package view;
 import java.awt.event.*;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.net.URL;
 
 import javax.swing.*;
+
+import main.Main;
 
 /**
  * Defines the reset game panel
@@ -27,7 +30,8 @@ public class ResetGamePanel extends HangmanPanel {
 		cs.gridwidth = 3;
 		this.add(headLine, cs);
 		
-		ImageIcon image = (new ImageIcon(((new ImageIcon("resources/hang" + nbrOfIncorrectGuesses + ".gif")).getImage()).getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
+		URL url = Main.class.getResource("/hang" + nbrOfIncorrectGuesses + ".gif");
+		ImageIcon image = (new ImageIcon(((new ImageIcon(url)).getImage()).getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
 		hangImage = new JLabel("", image, JLabel.CENTER);
 		cs.gridx = 0;
 		cs.gridy = 1;

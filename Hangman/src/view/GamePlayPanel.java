@@ -2,8 +2,11 @@ package view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.net.URL;
 
 import javax.swing.*;
+
+import main.Main;
 
 /**
  * Defines the game play panel
@@ -18,7 +21,7 @@ public class GamePlayPanel extends HangmanPanel {
 	private JTextField guessLetterField;
 	private GridBagConstraints cs;
 
-	protected GamePlayPanel(int amountOfGuesses, String wordString, String usedLettersString) {
+	protected GamePlayPanel(int nbrOfIncorrectGuesses, String wordString, String usedLettersString) {
 		super(new GridBagLayout());
 		cs = new GridBagConstraints();
 		
@@ -28,7 +31,8 @@ public class GamePlayPanel extends HangmanPanel {
 		cs.gridwidth = 3;
 		this.add(headLine, cs);
 		
-		ImageIcon image = (new ImageIcon(((new ImageIcon("resources/hang" + amountOfGuesses + ".gif")).getImage()).getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
+		URL url = Main.class.getResource("/hang" + nbrOfIncorrectGuesses + ".gif");
+		ImageIcon image = (new ImageIcon(((new ImageIcon(url)).getImage()).getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH)));
 		hangImage = new JLabel("", image, JLabel.CENTER);
 		cs.gridx = 0;
 		cs.gridy = 1;

@@ -2,10 +2,12 @@ package view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.net.URL;
 
 import javax.swing.*;
 
 import main.Constants;
+import main.Main;
 
 /**
  * Defines the start page panel
@@ -31,7 +33,8 @@ public class StartPagePanel extends HangmanPanel {
 		cs.gridwidth = 3;
 		this.add(headLine, cs);
 		
-		ImageIcon image = (new ImageIcon(((new ImageIcon("resources/duke.jpg")).getImage()).getScaledInstance(250, 250, java.awt.Image.SCALE_SMOOTH)));
+		URL url = Main.class.getResource("/duke.jpg");
+		ImageIcon image = (new ImageIcon(((new ImageIcon(url)).getImage()).getScaledInstance(250, 250, java.awt.Image.SCALE_SMOOTH)));
 		dukeImage = new JLabel("", image, JLabel.CENTER);
 		cs.gridx = 0;
 		cs.gridy = 1;
